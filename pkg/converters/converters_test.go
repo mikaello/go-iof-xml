@@ -33,8 +33,8 @@ func TestUnmarshalResultList(t *testing.T) {
 	if resultList.Event.Name != "Example event" {
 		t.Fatalf("Expected result list event name to be 'Example Event', found %s", resultList.Event.Name)
 	}
-	if resultList.Event.StartTime.Time.Time.Format("15:04:05-07:00") != "10:00:07+01:00" {
-		t.Fatalf("Expected result list event start time to be '10:00:07+01:00', found %s", resultList.Event.StartTime.Time.Time.Format("15:04:05-07:00"))
+	if resultList.Event.StartTime.Time.Format("15:04:05-07:00") != "10:00:00+01:00" {
+		t.Fatalf("Expected result list event start time to be '10:00:00+01:00', found %s", resultList.Event.StartTime.Time.Format("15:04:05-07:00"))
 	}
 }
 

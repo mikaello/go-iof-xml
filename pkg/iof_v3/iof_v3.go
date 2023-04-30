@@ -4,6 +4,7 @@ package iof_v3
 
 import (
 	"time"
+	"encoding/xml"
 )
 
 // BaseMessageElement is The base message element that all message elements extend.
@@ -906,6 +907,28 @@ type Contact struct {
 type DateAndOptionalTime struct {
 	Date string    `xml:"Date"`
 	Time time.Time `xml:"Time"`
+}
+
+func (d *DateAndOptionalTime) UnmarshalXML(decoder *xml.Decoder, start xml.StartElement) error {
+	type dateAndTime struct {
+		Date string `xml:"Date"`
+		Time string `xml:"Time"`
+	}
+
+	var dt dateAndTime
+	err := decoder.DecodeElement(&dt, &start)
+	if err != nil {
+		return err
+	}
+
+	t, err := time.Parse("15:04:05-07:00", dt.Time)
+	if err != nil {
+		return err
+	}
+
+	d.Date = dt.Date
+	d.Time = t
+	return nil
 }
 
 // LanguageString is Defines a text that is given in a particular language.
