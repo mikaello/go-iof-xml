@@ -1,14 +1,15 @@
 package converters
 
 import (
+	"bytes"
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
-	"os"
 	"reflect"
 	"regexp"
 
+	"github.com/mikaello/go-iof-xml/pkg/iof_v2"
 	"github.com/mikaello/go-iof-xml/pkg/iof_v3"
+	"golang.org/x/net/html/charset"
 )
 
 func getMainElementName(xml string) string {
@@ -42,6 +43,55 @@ func cleanAndUnmarshal(dirtyXml string, xmlType interface{}) interface{} {
 	}
 
 	return xmlType
+}
+
+func GenericUnmarshalV2Xml(dirtyXml string) interface{} {
+	mainElementName := getMainElementName(dirtyXml)
+	xmlData := removeUTF8BOM(dirtyXml, mainElementName)
+
+	type temp struct {
+		value interface{}
+	}
+
+	actual := temp{}
+
+	switch mainElementName {
+	case "PersonList":
+		actual.value = new(iof_v2.PersonList)
+	case "CompetitorList":
+		actual.value = new(iof_v2.CompetitorList)
+	case "RankList":
+		actual.value = new(iof_v2.RankList)
+	case "ClubList":
+		actual.value = new(iof_v2.ClubList)
+	case "EventList":
+		actual.value = new(iof_v2.EventList)
+	case "ServiceRequestList":
+		actual.value = new(iof_v2.ServiceRequestList)
+	case "EntryList":
+		actual.value = new(iof_v2.EntryList)
+	case "StartList":
+		actual.value = new(iof_v2.StartList)
+	case "ResultList":
+		actual.value = new(iof_v2.ResultList)
+	case "ClassData":
+		actual.value = new(iof_v2.ClassData)
+	case "CourseData":
+		actual.value = new(iof_v2.CourseData)
+	default:
+		fmt.Printf("hei: %s.\n", mainElementName)
+
+	}
+
+	decoder := xml.NewDecoder(bytes.NewReader([]byte(xmlData)))
+	decoder.CharsetReader = charset.NewReaderLabel
+	err := decoder.Decode(&actual.value)
+
+	if err != nil {
+		fmt.Printf("ERROR V3: Failed to unmarshal XML (%s): %s\n", mainElementName, err)
+	}
+
+	return actual.value
 }
 
 func GenericUnmarshalV3Xml(dirtyXml string) interface{} {
@@ -93,42 +143,56 @@ func UnmarshalIofV3CompetitorList(xml string) iof_v3.CompetitorList {
 	return result
 }
 
-func UnmarshalResultListV3(xmlobj []byte) iof_v3.ResultList {
-	result := iof_v3.ResultList{}
-	err := xml.Unmarshal(xmlobj, &result)
-	fmt.Println(err)
-
-	/*
-		cleanAndUnmarshal(xml, &result)
-	*/
+func UnmarshalIofV3OrganisationList(xml string) iof_v3.OrganisationList {
+	result := iof_v3.OrganisationList{}
+	cleanAndUnmarshal(xml, &result)
 	return result
 }
 
-func main() {
-	// Open our xmlFile
-	xmlFile, err := os.Open("users.xml")
-	// if we os.Open returns an error then handle it
-	if err != nil {
-		fmt.Println(err)
-	}
+func UnmarshalIofV3EventList(xml string) iof_v3.EventList {
+	result := iof_v3.EventList{}
+	cleanAndUnmarshal(xml, &result)
+	return result
+}
 
-	fmt.Println("Successfully Opened users.xml")
-	// defer the closing of our xmlFile so that we can parse it later on
-	defer xmlFile.Close()
+func UnmarshalIofV3ClassList(xml string) iof_v3.ClassList {
+	result := iof_v3.ClassList{}
+	cleanAndUnmarshal(xml, &result)
+	return result
+}
 
-	// read our opened xmlFile as a byte array.
-	byteValue, _ := ioutil.ReadAll(xmlFile)
+func UnmarshalIofV3EntryList(xml string) iof_v3.EntryList {
+	result := iof_v3.EntryList{}
+	cleanAndUnmarshal(xml, &result)
+	return result
+}
 
-	// we initialize our Users array
-	var resultList iof_v3.ResultList
-	// we unmarshal our byteArray which contains our
-	// xmlFiles content into 'users' which we defined above
-	xml.Unmarshal(byteValue, &resultList)
+func UnmarshalIofV3CourseData(xml string) iof_v3.CourseData {
+	result := iof_v3.CourseData{}
+	cleanAndUnmarshal(xml, &result)
+	return result
+}
 
-	// we iterate through every user within our users array and
-	// print out the user Type, their name, and their facebook url
-	// as just an example
-	for i := 0; i < len(resultList.ClassResult); i++ {
-		fmt.Println("User Name: " + resultList.ClassResult[i].Class.ModifyTimeAttr)
-	}
+func UnmarshalStartListV3(xml string) iof_v3.StartList {
+	result := iof_v3.StartList{}
+	cleanAndUnmarshal(xml, &result)
+	return result
+}
+
+func UnmarshalResultListV3(xml string) iof_v3.ResultList {
+	result := iof_v3.ResultList{}
+	cleanAndUnmarshal(xml, &result)
+	return result
+}
+
+func UnmarshalServiceRequestListV3(xml string) iof_v3.ServiceRequestList {
+	result := iof_v3.ServiceRequestList{}
+	cleanAndUnmarshal(xml, &result)
+	return result
+}
+
+func UnmarshalServiceControlCardListV3(xml string) iof_v3.ControlCardList {
+	result := iof_v3.ControlCardList{}
+	cleanAndUnmarshal(xml, &result)
+	return result
 }

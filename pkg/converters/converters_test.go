@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func TestUnmarshalAllTypes(t *testing.T) {
+func TestUnmarshalAllV3Types(t *testing.T) {
 	dirPath := "../../test/v3-examples"
 	entries, err := os.ReadDir(dirPath)
 	if err != nil {
@@ -26,9 +26,26 @@ func TestUnmarshalAllTypes(t *testing.T) {
 	}
 }
 
+func TestUnmarshalAllV2Types(t *testing.T) {
+	dirPath := "../../test/v2-examples"
+	entries, err := os.ReadDir(dirPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	for _, e := range entries {
+		if !strings.HasSuffix(e.Name(), ".xml") {
+			continue
+		}
+		file := readFile(filepath.Join(dirPath, e.Name()))
+		fmt.Println("Unmarshalling: " + e.Name())
+		_ = GenericUnmarshalV2Xml(string(file))
+	}
+}
+
 func TestUnmarshalResultList(t *testing.T) {
 	file := readFile("../../test/v3-examples/ResultList3.xml")
-	resultList := UnmarshalResultListV3(file)
+	resultList := UnmarshalResultListV3(string(file))
 
 	if resultList.Event.Name != "Example event" {
 		t.Fatalf("Expected result list event name to be 'Example Event', found %s", resultList.Event.Name)
