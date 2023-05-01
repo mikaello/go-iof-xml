@@ -39,13 +39,13 @@ func cleanAndUnmarshal(dirtyXml string, xmlType interface{}) interface{} {
 
 	err := xml.Unmarshal([]byte(xmlData), xmlType)
 	if err != nil {
-		fmt.Printf("ERROR V3: Failed to unmarshal XML (%s): %s\n", xmlTypeName, err)
+		fmt.Printf("ERROR: Failed to unmarshal XML (%s): %s\n", xmlTypeName, err)
 	}
 
 	return xmlType
 }
 
-func GenericUnmarshalV2Xml(dirtyXml string) interface{} {
+func GenericUnmarshalV2Xml(dirtyXml string) (interface{}, error) {
 	mainElementName := getMainElementName(dirtyXml)
 	xmlData := removeUTF8BOM(dirtyXml, mainElementName)
 
@@ -79,8 +79,7 @@ func GenericUnmarshalV2Xml(dirtyXml string) interface{} {
 	case "CourseData":
 		actual.value = new(iof_v2.CourseData)
 	default:
-		fmt.Printf("hei: %s.\n", mainElementName)
-
+		return nil, fmt.Errorf("unknown IOF v2 XML element: %s", mainElementName)
 	}
 
 	decoder := xml.NewDecoder(bytes.NewReader([]byte(xmlData)))
@@ -88,13 +87,13 @@ func GenericUnmarshalV2Xml(dirtyXml string) interface{} {
 	err := decoder.Decode(&actual.value)
 
 	if err != nil {
-		fmt.Printf("ERROR V3: Failed to unmarshal XML (%s): %s\n", mainElementName, err)
+		return nil, fmt.Errorf("failed to unmarshal IOF v2 XML (%s): %s", mainElementName, err)
 	}
 
-	return actual.value
+	return actual.value, nil
 }
 
-func GenericUnmarshalV3Xml(dirtyXml string) interface{} {
+func GenericUnmarshalV3Xml(dirtyXml string) (interface{}, error) {
 	mainElementName := getMainElementName(dirtyXml)
 	xmlData := removeUTF8BOM(dirtyXml, mainElementName)
 
@@ -126,15 +125,15 @@ func GenericUnmarshalV3Xml(dirtyXml string) interface{} {
 	case "ControlCardList":
 		actual.value = new(iof_v3.ControlCardList)
 	default:
-		fmt.Printf("hei: %s.\n", mainElementName)
+		return nil, fmt.Errorf("unknown IOF v3 XML element: %s", mainElementName )
 	}
 
 	err := xml.Unmarshal([]byte(xmlData), &actual.value)
 	if err != nil {
-		fmt.Printf("ERROR V3: Failed to unmarshal XML (%s): %s\n", mainElementName, err)
+		return nil, fmt.Errorf("failed to unmarshal IOF v3 XML (%s): %s", mainElementName, err)
 	}
 
-	return actual.value
+	return actual.value, nil
 }
 
 func UnmarshalIofV3CompetitorList(xml string) iof_v3.CompetitorList {
