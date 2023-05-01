@@ -1,4 +1,4 @@
-package converters
+package marshallers
 
 import (
 	"bytes"
@@ -218,4 +218,3 @@ func UnmarshalIofV3ControlCardList(xml string) iof_v3.ControlCardList {
 	cleanAndUnmarshal(xml, &result)
 	return result
 }
-

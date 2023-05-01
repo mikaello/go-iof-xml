@@ -2,6 +2,9 @@
 
 Go structs generated from IOF XSD v3 and v2.
 
+There also some marshaller utils in the `pkg/marshallers` package to help you
+convert XML files to Go structs and back.
+
 ## Related
 
 - Java classes for IOF XML v3 and v2:
