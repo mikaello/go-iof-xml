@@ -185,7 +185,7 @@ func UnmarshalIofV3CourseData(xml string) iof_v3.CourseData {
 	return result
 }
 
-func UnmarshalStartListV3(xml string) iof_v3.StartList {
+func UnmarshalIofV3StartList(xml string) iof_v3.StartList {
 	result := iof_v3.StartList{}
 	cleanAndUnmarshal(xml, &result)
 	return result
