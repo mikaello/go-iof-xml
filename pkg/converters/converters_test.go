@@ -2,7 +2,7 @@ package converters
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -132,7 +132,7 @@ func readFile(fileName string) []byte {
 	defer file.Close()
 
 	// read our opened xmlFile as a byte array.
-	byteValue, err := ioutil.ReadAll(file)
+	byteValue, err := io.ReadAll(file)
 	if err != nil {
 		panic(err)
 	}
