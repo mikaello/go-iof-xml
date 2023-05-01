@@ -45,6 +45,15 @@ func cleanAndUnmarshal(dirtyXml string, xmlType interface{}) interface{} {
 	return xmlType
 }
 
+func marshal(element interface{}) (string, error) {
+	xml, err := xml.MarshalIndent(element, "", "  ")
+	if err != nil {
+		return "", err
+	} else {
+		return string(xml), nil
+	}
+}
+
 func GenericUnmarshalV2Xml(dirtyXml string) (interface{}, error) {
 	mainElementName := getMainElementName(dirtyXml)
 	xmlData := removeUTF8BOM(dirtyXml, mainElementName)
@@ -125,7 +134,7 @@ func GenericUnmarshalV3Xml(dirtyXml string) (interface{}, error) {
 	case "ControlCardList":
 		actual.value = new(iof_v3.ControlCardList)
 	default:
-		return nil, fmt.Errorf("unknown IOF v3 XML element: %s", mainElementName )
+		return nil, fmt.Errorf("unknown IOF v3 XML element: %s", mainElementName)
 	}
 
 	err := xml.Unmarshal([]byte(xmlData), &actual.value)
@@ -171,6 +180,9 @@ func UnmarshalIofV3CourseData(xml string) iof_v3.CourseData {
 	cleanAndUnmarshal(xml, &result)
 	return result
 }
+func MarshalIofV3CourseData(element iof_v3.CourseData) (string, error) {
+	return marshal(element)
+}
 
 func UnmarshalStartListV3(xml string) iof_v3.StartList {
 	result := iof_v3.StartList{}
@@ -178,10 +190,21 @@ func UnmarshalStartListV3(xml string) iof_v3.StartList {
 	return result
 }
 
-func UnmarshalResultListV3(xml string) iof_v3.ResultList {
+func UnmarshalIofV3ResultList(xml string) iof_v3.ResultList {
 	result := iof_v3.ResultList{}
 	cleanAndUnmarshal(xml, &result)
 	return result
+}
+func MarshalIofV3ResultList(element iof_v3.ResultList) (string, error) {
+	return marshal(element)
+	/*
+	xml, err := xml.MarshalIndent(element, "", "  ")
+	if err != nil {
+		return "", err
+	} else {
+		return string(xml), nil
+	}
+	*/
 }
 
 func UnmarshalServiceRequestListV3(xml string) iof_v3.ServiceRequestList {
