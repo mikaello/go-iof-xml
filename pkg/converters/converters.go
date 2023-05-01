@@ -2,6 +2,7 @@ package converters
 
 import (
 	"bytes"
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"reflect"
@@ -51,6 +52,15 @@ func MarshallIofXml(element interface{}) (string, error) {
 		return "", err
 	} else {
 		return xml.Header + string(xmlContent), nil
+	}
+}
+
+func MarshallToIofUnofficialJson(element interface{}) (string, error) {
+	jsonContent, err := json.MarshalIndent(element, "", "  ")
+	if err != nil {
+		return "", err
+	} else {
+		return string(jsonContent), nil
 	}
 }
 

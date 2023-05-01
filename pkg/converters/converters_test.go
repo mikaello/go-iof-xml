@@ -71,6 +71,16 @@ func TestMarshalV3CourseData(t *testing.T) {
 	}
 }
 
+func TestMarshalV3CourseDataToJson(t *testing.T) {
+	file := readFile("../../test/v3-examples/StartList1.xml")
+	courseData := UnmarshalIofV3StartList(string(file))
+	_, err := MarshallToIofUnofficialJson(courseData)
+
+	if err != nil {
+		t.Fatalf("Could not marshal course data list: %s", err)
+	}
+}
+
 func TestUnmarshalAllV2Types(t *testing.T) {
 	dirPath := "../../test/v2-examples"
 	entries, err := os.ReadDir(dirPath)
