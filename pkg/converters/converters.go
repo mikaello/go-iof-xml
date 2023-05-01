@@ -45,15 +45,17 @@ func cleanAndUnmarshal(dirtyXml string, xmlType interface{}) interface{} {
 	return xmlType
 }
 
-func marshal(element interface{}) (string, error) {
-	xml, err := xml.MarshalIndent(element, "", "  ")
+func MarshallIofXml(element interface{}) (string, error) {
+	xmlContent, err := xml.MarshalIndent(element, "", "  ")
 	if err != nil {
 		return "", err
 	} else {
-		return string(xml), nil
+		return xml.Header + string(xmlContent), nil
 	}
 }
 
+// GenericUnmarshalV2Xml can be called with any valid IOF v2 XML document. You will need
+// to cast it to the correct type yourself.
 func GenericUnmarshalV2Xml(dirtyXml string) (interface{}, error) {
 	mainElementName := getMainElementName(dirtyXml)
 	xmlData := removeUTF8BOM(dirtyXml, mainElementName)
@@ -102,6 +104,8 @@ func GenericUnmarshalV2Xml(dirtyXml string) (interface{}, error) {
 	return actual.value, nil
 }
 
+// GenericUnmarshalV3Xml can be called with any valid IOF v3 XML document. You will need
+// to cast it to the correct type yourself.
 func GenericUnmarshalV3Xml(dirtyXml string) (interface{}, error) {
 	mainElementName := getMainElementName(dirtyXml)
 	xmlData := removeUTF8BOM(dirtyXml, mainElementName)
@@ -180,9 +184,6 @@ func UnmarshalIofV3CourseData(xml string) iof_v3.CourseData {
 	cleanAndUnmarshal(xml, &result)
 	return result
 }
-func MarshalIofV3CourseData(element iof_v3.CourseData) (string, error) {
-	return marshal(element)
-}
 
 func UnmarshalStartListV3(xml string) iof_v3.StartList {
 	result := iof_v3.StartList{}
@@ -195,26 +196,16 @@ func UnmarshalIofV3ResultList(xml string) iof_v3.ResultList {
 	cleanAndUnmarshal(xml, &result)
 	return result
 }
-func MarshalIofV3ResultList(element iof_v3.ResultList) (string, error) {
-	return marshal(element)
-	/*
-	xml, err := xml.MarshalIndent(element, "", "  ")
-	if err != nil {
-		return "", err
-	} else {
-		return string(xml), nil
-	}
-	*/
-}
 
-func UnmarshalServiceRequestListV3(xml string) iof_v3.ServiceRequestList {
+func UnmarshalIofV3ServiceRequestList(xml string) iof_v3.ServiceRequestList {
 	result := iof_v3.ServiceRequestList{}
 	cleanAndUnmarshal(xml, &result)
 	return result
 }
 
-func UnmarshalServiceControlCardListV3(xml string) iof_v3.ControlCardList {
+func UnmarshalIofV3ControlCardList(xml string) iof_v3.ControlCardList {
 	result := iof_v3.ControlCardList{}
 	cleanAndUnmarshal(xml, &result)
 	return result
 }
+

@@ -55,9 +55,7 @@ func TestUnmarshalV3ResultList(t *testing.T) {
 func TestMarshalV3ResultList(t *testing.T) {
 	file := readFile("../../test/v3-examples/ResultList3.xml")
 	resultList := UnmarshalIofV3ResultList(string(file))
-	xmlContent, err := MarshalIofV3ResultList(resultList)
-
-	fmt.Println(xmlContent)
+	_, err := MarshallIofXml(resultList)
 
 	if err != nil {
 		t.Fatalf("Could not marshal result list: %s", err)
@@ -66,12 +64,10 @@ func TestMarshalV3ResultList(t *testing.T) {
 func TestMarshalV3CourseData(t *testing.T) {
 	file := readFile("../../test/v3-examples/CourseData_Individual_Step2.xml")
 	courseData := UnmarshalIofV3CourseData(string(file))
-	xmlContent, err := MarshalIofV3CourseData(courseData)
-
-	fmt.Println(xmlContent)
+	_, err := MarshallIofXml(courseData)
 
 	if err != nil {
-		t.Fatalf("Could not marshal result list: %s", err)
+		t.Fatalf("Could not marshal course data list: %s", err)
 	}
 }
 
