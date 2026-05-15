@@ -249,7 +249,7 @@ type EventClass struct {
 
 // TransferedToClass ...
 type TransferedToClass struct {
-	ClassId        *ClassId         `xml:"ClassId"`
+	ClassId        *ClassId        `xml:"ClassId"`
 	ClassShortName *ClassShortName `xml:"ClassShortName"`
 }
 
@@ -261,7 +261,7 @@ type DividedIntoClass struct {
 // EntryClass ...
 type EntryClass struct {
 	SequenceAttr   string          `xml:"sequence,attr,omitempty"`
-	ClassId        *ClassId         `xml:"ClassId"`
+	ClassId        *ClassId        `xml:"ClassId"`
 	ClassShortName *ClassShortName `xml:"ClassShortName"`
 	EventClass     *EventClass     `xml:"EventClass"`
 }
@@ -1167,8 +1167,8 @@ type Transaction struct {
 	Club               *Club           `xml:"Club"`
 	OrganisationId     *OrganisationId `xml:"OrganisationId"`
 	Organisation       *Organisation   `xml:"Organisation"`
-	PersonId           []*PersonId        `xml:"PersonId"`
-	Person             []*Person        `xml:"Person"`
+	PersonId           []*PersonId     `xml:"PersonId"`
+	Person             []*Person       `xml:"Person"`
 	EntryId            []string        `xml:"EntryId"`
 	ServiceOrderNumber []string        `xml:"ServiceOrderNumber"`
 	ServiceId          []string        `xml:"ServiceId"`

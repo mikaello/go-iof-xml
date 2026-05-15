@@ -236,7 +236,7 @@ type EventURL struct {
 	Value    string `xml:",chardata"`
 }
 
-// Schedule defines the schedule of sub-events that comprise the entire orienteering event, 
+// Schedule defines the schedule of sub-events that comprise the entire orienteering event,
 // e.g. banquets, social events and awards ceremonies.
 type Schedule struct {
 	ModifyTimeAttr string       `xml:"modifyTime,attr,omitempty"`
