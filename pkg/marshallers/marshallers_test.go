@@ -8,8 +8,6 @@ import (
 	"strings"
 	"testing"
 	"time"
-
-	"github.com/mikaello/go-iof-xml/pkg/iof_v2"
 )
 
 func TestUnmarshalAllV3Types(t *testing.T) {
@@ -78,58 +76,6 @@ func TestMarshalV3CourseDataToJson(t *testing.T) {
 
 	if err != nil {
 		t.Fatalf("Could not marshal course data list: %s", err)
-	}
-}
-
-func TestUnmarshalAllV2Types(t *testing.T) {
-	dirPath := "../../test/v2-examples"
-	entries, err := os.ReadDir(dirPath)
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	for _, e := range entries {
-		if !strings.HasSuffix(e.Name(), ".xml") {
-			continue
-		}
-		file := readFile(filepath.Join(dirPath, e.Name()))
-		fmt.Println("Unmarshalling: " + e.Name())
-		_, err = GenericUnmarshalV2Xml(string(file))
-		if err != nil {
-			t.Error(err)
-		}
-	}
-}
-
-func TestUnmarshalV2ResultList(t *testing.T) {
-	file := readFile("../../test/v2-examples/ResultList_example3.xml")
-	result, err := GenericUnmarshalV2Xml(string(file))
-	if err != nil {
-		t.Fatal(err)
-	}
-	resultList := result.(*iof_v2.ResultList)
-
-	if resultList.ClassResult[0].TeamResult[0].TeamStatus.ValueAttr != "OK" {
-		t.Errorf("Expected result list event first team status to be 'OK', found %s", resultList.ClassResult[0].TeamResult[0].TeamStatus.ValueAttr)
-	}
-	if resultList.ClassResult[0].TeamResult[1].TeamStatus.ValueAttr != "Active" {
-		t.Errorf("Expected result list event second team status to be 'Active', found %s", resultList.ClassResult[0].TeamResult[1].TeamStatus.ValueAttr)
-	}
-	if resultList.ClassResult[0].TeamResult[1].Time.Value != "55:03" {
-		t.Errorf("Expected result list event second team result time to be '55:03', found %s", resultList.ClassResult[0].TeamResult[1].Time.Value)
-	}
-}
-
-func TestUnmarshalV2ClubList(t *testing.T) {
-	file := readFile("../../test/v2-examples/ClubList_example.xml")
-	result, err := GenericUnmarshalV2Xml(string(file))
-	if err != nil {
-		t.Fatal(err)
-	}
-	resultList := result.(*iof_v2.ClubList)
-
-	if resultList.Club[0].Address[0].CityAttr != "Højbjerg" {
-		t.Errorf("Expected first club in club list to have address city 'Højbjerg', found %s", resultList.Club[0].Address[0].CityAttr)
 	}
 }
 

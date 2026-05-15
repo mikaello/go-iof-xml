@@ -1,16 +1,13 @@
 package marshallers
 
 import (
-	"bytes"
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
 	"reflect"
 	"regexp"
 
-	"github.com/mikaello/go-iof-xml/pkg/iof_v2"
 	"github.com/mikaello/go-iof-xml/pkg/iof_v3"
-	"golang.org/x/net/html/charset"
 )
 
 func getMainElementName(xml string) string {
@@ -62,56 +59,6 @@ func MarshallToIofUnofficialJson(element interface{}) (string, error) {
 	} else {
 		return string(jsonContent), nil
 	}
-}
-
-// GenericUnmarshalV2Xml can be called with any valid IOF v2 XML document. You will need
-// to cast it to the correct type yourself.
-func GenericUnmarshalV2Xml(dirtyXml string) (interface{}, error) {
-	mainElementName := getMainElementName(dirtyXml)
-	xmlData := removeUTF8BOM(dirtyXml, mainElementName)
-
-	type temp struct {
-		value interface{}
-	}
-
-	actual := temp{}
-
-	switch mainElementName {
-	case "PersonList":
-		actual.value = new(iof_v2.PersonList)
-	case "CompetitorList":
-		actual.value = new(iof_v2.CompetitorList)
-	case "RankList":
-		actual.value = new(iof_v2.RankList)
-	case "ClubList":
-		actual.value = new(iof_v2.ClubList)
-	case "EventList":
-		actual.value = new(iof_v2.EventList)
-	case "ServiceRequestList":
-		actual.value = new(iof_v2.ServiceRequestList)
-	case "EntryList":
-		actual.value = new(iof_v2.EntryList)
-	case "StartList":
-		actual.value = new(iof_v2.StartList)
-	case "ResultList":
-		actual.value = new(iof_v2.ResultList)
-	case "ClassData":
-		actual.value = new(iof_v2.ClassData)
-	case "CourseData":
-		actual.value = new(iof_v2.CourseData)
-	default:
-		return nil, fmt.Errorf("unknown IOF v2 XML element: %s", mainElementName)
-	}
-
-	decoder := xml.NewDecoder(bytes.NewReader([]byte(xmlData)))
-	decoder.CharsetReader = charset.NewReaderLabel
-	err := decoder.Decode(&actual.value)
-
-	if err != nil {
-		return nil, fmt.Errorf("failed to unmarshal IOF v2 XML (%s): %s", mainElementName, err)
-	}
-
-	return actual.value, nil
 }
 
 // GenericUnmarshalV3Xml can be called with any valid IOF v3 XML document. You will need
