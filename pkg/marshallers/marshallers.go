@@ -1,14 +1,3 @@
-// Package marshallers encodes and decodes IOF Interface Standard v3 XML
-// documents to and from the Go structs defined in
-// github.com/mikaello/go-iof-xml/pkg/iof_v3.
-//
-// Decoding accepts XML with or without a UTF-8 BOM and supports non-UTF-8
-// encodings declared in the XML prolog. The document type is identified
-// by the root element; use [Decode] when the type is not known statically
-// or [DecodeAs] for a typed result.
-//
-// JSON support is provided for convenience and mirrors the XML structure;
-// it is not part of the IOF data standard.
 package marshallers
 
 import (
