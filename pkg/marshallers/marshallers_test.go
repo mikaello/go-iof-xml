@@ -11,7 +11,10 @@ import (
 	"github.com/mikaello/go-iof-xml/pkg/iof_v3"
 )
 
-const examplesDir = "../../test/v3-examples"
+const (
+	examplesDir  = "../../test/v3-examples"
+	realWorldDir = "../../test/v3-realworld"
+)
 
 func TestDecodeAllExamples(t *testing.T) {
 	entries, err := os.ReadDir(examplesDir)
@@ -179,6 +182,62 @@ func TestEncodeJSON(t *testing.T) {
 	}
 	if !bytes.HasPrefix(bytes.TrimSpace(out), []byte("{")) {
 		t.Errorf("EncodeJSON did not produce a JSON object")
+	}
+}
+
+func TestDecodeRealWorldExamples(t *testing.T) {
+	entries, err := os.ReadDir(realWorldDir)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	var n int
+	for _, e := range entries {
+		if !strings.HasSuffix(e.Name(), ".xml") {
+			continue
+		}
+		n++
+		t.Run(e.Name(), func(t *testing.T) {
+			data := readFile(t, filepath.Join(realWorldDir, e.Name()))
+			doc, err := Decode(data)
+			if err != nil {
+				t.Fatalf("Decode: %v", err)
+			}
+			if _, err := EncodeXML(doc); err != nil {
+				t.Fatalf("EncodeXML: %v", err)
+			}
+		})
+	}
+	if n == 0 {
+		t.Fatalf("no real-world fixtures found in %s", realWorldDir)
+	}
+}
+
+func TestDateAndOptionalTimeWithoutTimezone(t *testing.T) {
+	data := readFile(t, filepath.Join(realWorldDir, "result_list.xml"))
+
+	list, err := DecodeAs[iof_v3.ResultList](data)
+	if err != nil {
+		t.Fatalf("DecodeAs: %v", err)
+	}
+	if list.Event.StartTime == nil || list.Event.StartTime.Time == nil {
+		t.Fatal("StartTime.Time is nil")
+	}
+	if got, want := list.Event.StartTime.Time.Format("15:04:05"), "10:00:00"; got != want {
+		t.Errorf("StartTime.Time = %q, want %q", got, want)
+	}
+
+	// Round-trip: re-encoding must not invent a timezone offset that was
+	// absent from the input.
+	out, err := EncodeXML(list)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if bytes.Contains(out, []byte("10:00:00+")) || bytes.Contains(out, []byte("10:00:00Z")) {
+		t.Errorf("re-encoded XML added a timezone to a tz-less time:\n%s", out)
+	}
+	if !bytes.Contains(out, []byte("<Time>10:00:00</Time>")) {
+		t.Errorf("re-encoded XML missing expected tz-less <Time>:\n%s", out)
 	}
 }
 

@@ -4,6 +4,7 @@ package iof_v3
 
 import (
 	"encoding/xml"
+	"strings"
 	"time"
 )
 
@@ -911,6 +912,22 @@ type Contact struct {
 type DateAndOptionalTime struct {
 	Date string     `xml:"Date"`
 	Time *time.Time `xml:"Time"`
+
+	// hasTimezone records whether the parsed <Time> carried an explicit
+	// offset (Z or ±HH:MM). MarshalXML preserves the original form so that
+	// timezone-less ISO 8601 times survive a round-trip unchanged.
+	hasTimezone bool
+}
+
+// dateAndOptionalTimeFormats are tried in order when parsing the combined
+// "<Date>T<Time>" string. The first three carry an explicit timezone (and
+// are RFC 3339 compatible); the last two are timezone-less.
+var dateAndOptionalTimeFormats = []string{
+	time.RFC3339Nano,
+	time.RFC3339,
+	"2006-01-02T15:04",
+	"2006-01-02T15:04:05.999999999",
+	"2006-01-02T15:04:05",
 }
 
 func (d *DateAndOptionalTime) UnmarshalXML(decoder *xml.Decoder, start xml.StartElement) error {
@@ -920,21 +937,29 @@ func (d *DateAndOptionalTime) UnmarshalXML(decoder *xml.Decoder, start xml.Start
 	}
 
 	var dt dateAndTime
-	err := decoder.DecodeElement(&dt, &start)
-	if err != nil {
+	if err := decoder.DecodeElement(&dt, &start); err != nil {
 		return err
 	}
 	d.Date = dt.Date
 
-	if dt.Time != "" {
-		t, err := time.Parse(time.RFC3339, dt.Date+"T"+dt.Time)
-		if err != nil {
-			return err
-		}
-
-		d.Time = &t
+	if dt.Time == "" {
+		return nil
 	}
-	return nil
+
+	combined := dt.Date + "T" + dt.Time
+	var (
+		parsed time.Time
+		err    error
+	)
+	for _, f := range dateAndOptionalTimeFormats {
+		parsed, err = time.Parse(f, combined)
+		if err == nil {
+			d.hasTimezone = !strings.HasPrefix(f, "2006-01-02T15:04:05") && f != "2006-01-02T15:04"
+			d.Time = &parsed
+			return nil
+		}
+	}
+	return err
 }
 
 func (d DateAndOptionalTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {
@@ -943,17 +968,12 @@ func (d DateAndOptionalTime) MarshalXML(e *xml.Encoder, start xml.StartElement) 
 		Time string `xml:"Time,omitempty"`
 	}
 
-	var dt dateAndTime
-
+	dt := dateAndTime{Date: d.Date}
 	if d.Time != nil {
-		dt = dateAndTime{
-			Date: d.Date,
-			Time: d.Time.Format("15:04:05-07:00"),
-		}
-	} else {
-		dt = dateAndTime{
-			Date: d.Date,
-			Time: "",
+		if d.hasTimezone {
+			dt.Time = d.Time.Format("15:04:05-07:00")
+		} else {
+			dt.Time = d.Time.Format("15:04:05")
 		}
 	}
 
