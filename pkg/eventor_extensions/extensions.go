@@ -11,8 +11,14 @@
 //	  <eventor:StartListExists>true</eventor:StartListExists>
 //	  <eventor:ResultListExists>true</eventor:ResultListExists>
 //	  <eventor:Discipline>Foot</eventor:Discipline>
+//	  <eventor:Discipline>MountainBike</eventor:Discipline>
 //	  <eventor:LightCondition>Day</eventor:LightCondition>
+//	  <eventor:Attribute id="2">Ukas løype</eventor:Attribute>
 //	</Extensions>
+//
+// `<eventor:Discipline>` and `<eventor:Attribute>` are both repeatable
+// — Eventor lists each discipline / custom attribute as a separate
+// element rather than wrapping them.
 //
 // The IOF XSD treats `<Extensions>` as an open catch-all
 // (the generated [iof_v3.Extensions] struct is empty), so consumers who
@@ -32,16 +38,16 @@ import (
 )
 
 // Discipline is Eventor's discipline classification, distinct from the
-// IOF v3 `Discipline` element.
+// IOF v3 `Discipline` element. The values mirror the EventorDiscipline
+// enum in eventor-api-openapi-spec.
 type Discipline string
 
 const (
-	DisciplineFoot  Discipline = "Foot"
-	DisciplineMTB   Discipline = "MTB"
-	DisciplineSki   Discipline = "Ski"
-	DisciplineTrail Discipline = "Trail"
-	DisciplinePreO  Discipline = "PreO"
-	DisciplineTempO Discipline = "TempO"
+	DisciplineFoot         Discipline = "Foot"
+	DisciplineMountainBike Discipline = "MountainBike"
+	DisciplineSki          Discipline = "Ski"
+	DisciplineTrail        Discipline = "Trail"
+	DisciplineIndoor       Discipline = "Indoor"
 )
 
 // LightCondition describes whether a race takes place during the day,
@@ -54,6 +60,14 @@ const (
 	LightConditionDayAndNight LightCondition = "DayAndNight"
 )
 
+// Attribute is a custom event attribute attached to the parent element.
+// The set of attributes is instance-specific (the Norwegian Eventor
+// exposes e.g. "Ukas løype", "Paratilbud", "Flexoløp").
+type Attribute struct {
+	ID    string `xml:"id,attr"`
+	Value string `xml:",chardata"`
+}
+
 // Extensions are the Eventor-namespaced fields seen inside an
 // `<Extensions>` element on an `<Event>` or `<Race>`. Fields that
 // were not present in the XML are left as their zero value.
@@ -62,8 +76,12 @@ type Extensions struct {
 	EventRaceID      string         `xml:"EventRaceId"`
 	StartListExists  bool           `xml:"StartListExists"`
 	ResultListExists bool           `xml:"ResultListExists"`
-	Discipline       Discipline     `xml:"Discipline"`
-	LightCondition   LightCondition `xml:"LightCondition"`
+	// Disciplines lists every discipline the event/race accommodates.
+	// Eventor emits one <eventor:Discipline> element per discipline.
+	Disciplines    []Discipline   `xml:"Discipline"`
+	LightCondition LightCondition `xml:"LightCondition"`
+	// Attributes lists the custom Eventor event attributes.
+	Attributes []Attribute `xml:"Attribute"`
 }
 
 // Race is the slice of an IOF XML `<Race>` element that carries

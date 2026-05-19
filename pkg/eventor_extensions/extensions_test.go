@@ -36,12 +36,23 @@ func TestDecodeEventList(t *testing.T) {
 	if got := ev.Extensions.ResultListExists; got {
 		t.Errorf("event ResultListExists = %v, want false", got)
 	}
-	if got := ev.Extensions.Discipline; got != eventor_extensions.DisciplineFoot {
-		t.Errorf("event Discipline = %q, want Foot", got)
+	want := []eventor_extensions.Discipline{
+		eventor_extensions.DisciplineFoot,
+		eventor_extensions.DisciplineIndoor,
+	}
+	if got := ev.Extensions.Disciplines; !equalDisciplines(got, want) {
+		t.Errorf("event Disciplines = %v, want %v", got, want)
 	}
 	// Light condition not present on the event-level extensions.
 	if got := ev.Extensions.LightCondition; got != "" {
 		t.Errorf("event LightCondition = %q, want empty", got)
+	}
+	wantAttrs := []eventor_extensions.Attribute{
+		{ID: "2", Value: "Ukas løype"},
+		{ID: "3", Value: "Paratilbud"},
+	}
+	if got := ev.Extensions.Attributes; !equalAttributes(got, wantAttrs) {
+		t.Errorf("event Attributes = %v, want %v", got, wantAttrs)
 	}
 }
 
@@ -64,11 +75,16 @@ func TestDecodeEventListRaceExtensions(t *testing.T) {
 	if got := r.Extensions.ResultListExists; !got {
 		t.Errorf("race ResultListExists = %v, want true", got)
 	}
-	if got := r.Extensions.Discipline; got != eventor_extensions.DisciplineFoot {
-		t.Errorf("race Discipline = %q, want Foot", got)
+	wantD := []eventor_extensions.Discipline{
+		eventor_extensions.DisciplineFoot,
+		eventor_extensions.DisciplineMountainBike,
+		eventor_extensions.DisciplineSki,
 	}
-	if got := r.Extensions.LightCondition; got != eventor_extensions.LightConditionDay {
-		t.Errorf("race LightCondition = %q, want Day", got)
+	if got := r.Extensions.Disciplines; !equalDisciplines(got, wantD) {
+		t.Errorf("race Disciplines = %v, want %v", got, wantD)
+	}
+	if got := r.Extensions.LightCondition; got != eventor_extensions.LightConditionDayAndNight {
+		t.Errorf("race LightCondition = %q, want DayAndNight", got)
 	}
 }
 
@@ -88,7 +104,34 @@ func TestDecodeEventListNoExtensions(t *testing.T) {
 		t.Fatalf("got %d events, want 1", len(el.Events))
 	}
 	ev := el.Events[0]
-	if ev.Extensions.EventRaceID != "" || ev.Extensions.StartListExists || ev.Extensions.Discipline != "" {
+	if ev.Extensions.EventRaceID != "" ||
+		ev.Extensions.StartListExists ||
+		len(ev.Extensions.Disciplines) != 0 ||
+		len(ev.Extensions.Attributes) != 0 {
 		t.Errorf("expected zero-valued extensions on event with no <Extensions>, got %+v", ev.Extensions)
 	}
+}
+
+func equalDisciplines(a, b []eventor_extensions.Discipline) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func equalAttributes(a, b []eventor_extensions.Attribute) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
 }
