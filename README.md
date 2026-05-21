@@ -8,6 +8,7 @@ Go bindings for the [IOF Interface Standard v3](https://github.com/international
 
 - `pkg/iof_v3` — Go structs generated from the official v3 XSD.
 - `pkg/marshallers` — small helpers for decoding and encoding v3 documents.
+- `pkg/eventor_extensions` — opt-in helpers for reading the Eventor-specific fields carried in `<Extensions>` elements (namespace `http://eventor.orientering.se/iofxmlextensions`) emitted by the Eventor REST API's `/.../iofxml` endpoints. The IOF XSD treats `<Extensions>` as an open catch-all, so callers who need `EventRaceId`, `StartListExists`, `Discipline`, `LightCondition` etc. can decode the document a second time with this package.
 
 ## Install
 

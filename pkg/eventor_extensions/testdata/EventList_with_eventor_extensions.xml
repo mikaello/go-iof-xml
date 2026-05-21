@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EventList xmlns:eventor="http://eventor.orientering.se/iofxmlextensions" xmlns="http://www.orienteering.org/datastandard/3.0" iofVersion="3.0" createTime="2026-05-19T18:37:30Z" creator="Eventor">
+  <Event>
+    <Id type="Eventor">23514</Id>
+    <Name>Example event with Eventor extensions</Name>
+    <StartTime>
+      <Date>2026-04-22</Date>
+      <Time>14:30:00Z</Time>
+    </StartTime>
+    <Classification>Local</Classification>
+    <Form>Individual</Form>
+    <Race>
+      <RaceNumber>1</RaceNumber>
+      <Name>Dag 1</Name>
+      <StartTime>
+        <Date>2026-04-22</Date>
+        <Time>14:30:00Z</Time>
+      </StartTime>
+      <Classification>Local</Classification>
+      <Extensions>
+        <eventor:EventRaceId type="Eventor">24332</eventor:EventRaceId>
+        <eventor:StartListExists>true</eventor:StartListExists>
+        <eventor:ResultListExists>true</eventor:ResultListExists>
+        <eventor:Discipline>Foot</eventor:Discipline>
+        <eventor:Discipline>MountainBike</eventor:Discipline>
+        <eventor:Discipline>Ski</eventor:Discipline>
+        <eventor:LightCondition>DayAndNight</eventor:LightCondition>
+      </Extensions>
+    </Race>
+    <Extensions>
+      <eventor:StartListExists>true</eventor:StartListExists>
+      <eventor:ResultListExists>false</eventor:ResultListExists>
+      <eventor:Discipline>Foot</eventor:Discipline>
+      <eventor:Discipline>Indoor</eventor:Discipline>
+      <eventor:Attribute id="2">Ukas løype</eventor:Attribute>
+      <eventor:Attribute id="3">Paratilbud</eventor:Attribute>
+    </Extensions>
+  </Event>
+</EventList>
