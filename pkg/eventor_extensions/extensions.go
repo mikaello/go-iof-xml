@@ -72,10 +72,10 @@ type Attribute struct {
 // `<Extensions>` element on an `<Event>` or `<Race>`. Fields that
 // were not present in the XML are left as their zero value.
 type Extensions struct {
-	XMLName          xml.Name       `xml:"Extensions"`
-	EventRaceID      string         `xml:"EventRaceId"`
-	StartListExists  bool           `xml:"StartListExists"`
-	ResultListExists bool           `xml:"ResultListExists"`
+	XMLName          xml.Name `xml:"Extensions"`
+	EventRaceID      string   `xml:"EventRaceId"`
+	StartListExists  bool     `xml:"StartListExists"`
+	ResultListExists bool     `xml:"ResultListExists"`
 	// Disciplines lists every discipline the event/race accommodates.
 	// Eventor emits one <eventor:Discipline> element per discipline.
 	Disciplines    []Discipline   `xml:"Discipline"`
