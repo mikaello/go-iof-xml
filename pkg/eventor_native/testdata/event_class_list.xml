@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<EventClassList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EventClass lowAge="11" highAge="12" sex="F" numberOfEntries="5">
+    <EventClassId>220810</EventClassId>
+    <Name>D11-12</Name>
+    <ClassShortName>d11-12</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>1</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="5" noOfStarts="5">
+      <ClassRaceInfoId>238439</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="11" highAge="12" sex="M" numberOfEntries="6">
+    <EventClassId>220811</EventClassId>
+    <Name>H11-12</Name>
+    <ClassShortName>h11-12</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>2</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="6" noOfStarts="6">
+      <ClassRaceInfoId>238440</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="13" highAge="14" sex="F" numberOfEntries="5">
+    <EventClassId>220812</EventClassId>
+    <Name>D13-14 (2,5km)</Name>
+    <ClassShortName>d13-14</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>3</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="5" noOfStarts="5">
+      <ClassRaceInfoId>238441</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="13" highAge="14" sex="M" numberOfEntries="3">
+    <EventClassId>220813</EventClassId>
+    <Name>H13-14 (2,5km)</Name>
+    <ClassShortName>h13-14</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>4</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="3" noOfStarts="3">
+      <ClassRaceInfoId>238442</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="13" highAge="16" sex="F" numberOfEntries="3">
+    <EventClassId>220814</EventClassId>
+    <Name>D15-16 (4,5km)</Name>
+    <ClassShortName>d15-16</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>5</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="3" noOfStarts="3">
+      <ClassRaceInfoId>238443</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="13" highAge="16" sex="M" numberOfEntries="1">
+    <EventClassId>220815</EventClassId>
+    <Name>H15-16 (4,5km)</Name>
+    <ClassShortName>h15-16</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>6</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="1" noOfStarts="1">
+      <ClassRaceInfoId>238444</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="17" sex="M" numberOfEntries="22">
+    <EventClassId>220816</EventClassId>
+    <Name>Herrer 17- (4,5km)</Name>
+    <ClassShortName>h17</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>7</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="22" noOfStarts="22">
+      <ClassRaceInfoId>238445</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass sex="M" numberOfEntries="17">
+    <EventClassId>220817</EventClassId>
+    <Name>Herrer åpen mellom (2,5 km)</Name>
+    <ClassShortName>h mellom</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>3</ClassTypeId>
+      <ShortName>Å</ShortName>
+      <Name>Åpne klasser</Name>
+    </ClassType>
+    <ExternalId>10</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="17" noOfStarts="16">
+      <ClassRaceInfoId>238446</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass sex="B" numberOfEntries="18">
+    <EventClassId>220818</EventClassId>
+    <Name>N-åpen</Name>
+    <ClassShortName>-10 nybegynner</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>3</ClassTypeId>
+      <ShortName>Å</ShortName>
+      <Name>Åpne klasser</Name>
+    </ClassType>
+    <ExternalId>11</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="18" noOfStarts="18">
+      <ClassRaceInfoId>238447</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="70" sex="B" numberOfEntries="10">
+    <EventClassId>220819</EventClassId>
+    <Name>Veteran 70+ (2,5km)</Name>
+    <ClassShortName>veteran</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>12</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="10" noOfStarts="10">
+      <ClassRaceInfoId>238448</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="17" sex="F" numberOfEntries="7">
+    <EventClassId>220820</EventClassId>
+    <Name>Damer 17- (4,5km)</Name>
+    <ClassShortName>d17</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>13</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="7" noOfStarts="7">
+      <ClassRaceInfoId>238449</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass sex="F" numberOfEntries="22">
+    <EventClassId>220821</EventClassId>
+    <Name>Damer åpen mellom (2,5 km)</Name>
+    <ClassShortName>d mellom</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>3</ClassTypeId>
+      <ShortName>Å</ShortName>
+      <Name>Åpne klasser</Name>
+    </ClassType>
+    <ExternalId>14</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="22" noOfStarts="20">
+      <ClassRaceInfoId>238450</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="80" sex="B" numberOfEntries="6">
+    <EventClassId>220822</EventClassId>
+    <Name>Superveteran 80+ (2,5km)</Name>
+    <ClassShortName>super</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>15</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="6" noOfStarts="6">
+      <ClassRaceInfoId>238451</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass sex="B" numberOfEntries="19">
+    <EventClassId>220823</EventClassId>
+    <Name>Kort åpen c</Name>
+    <ClassShortName>Kort c</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>3</ClassTypeId>
+      <ShortName>Å</ShortName>
+      <Name>Åpne klasser</Name>
+    </ClassType>
+    <ExternalId>18</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="19" noOfStarts="18">
+      <ClassRaceInfoId>238452</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="50" sex="F" numberOfEntries="3">
+    <EventClassId>220824</EventClassId>
+    <Name>Damer 50+ (4,5km)</Name>
+    <ClassShortName>d50</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>19</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="3" noOfStarts="3">
+      <ClassRaceInfoId>238453</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass lowAge="50" sex="M" numberOfEntries="14">
+    <EventClassId>220825</EventClassId>
+    <Name>Herrer 50+ (4,5km)</Name>
+    <ClassShortName>h50</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>2</ClassTypeId>
+      <ShortName>O</ShortName>
+      <Name>Ordinære klasser</Name>
+    </ClassType>
+    <ExternalId>20</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="14" noOfStarts="14">
+      <ClassRaceInfoId>238454</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass sex="B" numberOfEntries="1">
+    <EventClassId>221001</EventClassId>
+    <Name>Svaksynt mellom (2,5km)</Name>
+    <ClassShortName>svaksynt mellom</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>3</ClassTypeId>
+      <ShortName>Å</ShortName>
+      <Name>Åpne klasser</Name>
+    </ClassType>
+    <ExternalId>21</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="1" noOfStarts="1">
+      <ClassRaceInfoId>238630</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+  <EventClass sex="B" numberOfEntries="0">
+    <EventClassId>221002</EventClassId>
+    <Name>Svaksynt nybegynner</Name>
+    <ClassShortName>Svaksynt n</ClassShortName>
+    <EventClassStatus value="normal"></EventClassStatus>
+    <ClassType>
+      <ClassTypeId>3</ClassTypeId>
+      <ShortName>Å</ShortName>
+      <Name>Åpne klasser</Name>
+    </ClassType>
+    <ExternalId>22</ExternalId>
+    <PunchingUnitType value="emiTag"></PunchingUnitType>
+    <ClassRaceInfo minRunners="1" maxRunners="1" noOfEntries="0" noOfStarts="0">
+      <ClassRaceInfoId>238631</ClassRaceInfoId>
+      <EventRaceId>24715</EventRaceId>
+      <Name></Name>
+      <ClassRaceStatus value="notAllocated"></ClassRaceStatus>
+    </ClassRaceInfo>
+  </EventClass>
+</EventClassList>

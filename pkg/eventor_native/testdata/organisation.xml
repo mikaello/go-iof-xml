@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Organisation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <OrganisationId>273</OrganisationId>
+  <Name>Ridgeway Orienteers</Name>
+  <ShortName>RO</ShortName>
+  <MediaName>Ridgeway Orienteers</MediaName>
+  <OrganisationTypeId>3</OrganisationTypeId>
+  <Country>
+    <CountryId value="578"></CountryId>
+    <Alpha3 value="NOR"></Alpha3>
+    <Name languageId="en">Norway</Name>
+    <Name languageId="sv">Norge</Name>
+  </Country>
+  <Address careOf="Junior Roth" street="Nøkkelen 10" city="Skien" zipCode="1742">
+    <AddressType value="official"></AddressType>
+    <Country>
+      <CountryId value="578"></CountryId>
+      <Alpha3 value="NOR"></Alpha3>
+      <Name languageId="en">Norway</Name>
+      <Name languageId="sv">Norge</Name>
+    </Country>
+  </Address>
+  <Tele mailAddress="wanda.hughes@rovaniemen-ounasvaara-sr.no">
+    <TeleType value="official"></TeleType>
+  </Tele>
+  <ParentOrganisation>
+    <OrganisationId>3</OrganisationId>
+  </ParentOrganisation>
+  <OrganisationStatusId>1</OrganisationStatusId>
+  <ModifyDate>
+    <Date>2017-05-24</Date>
+    <Clock>22:53:27</Clock>
+  </ModifyDate>
+</Organisation>

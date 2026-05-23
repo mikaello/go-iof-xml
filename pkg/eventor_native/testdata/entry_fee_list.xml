@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<EntryFeeList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <EntryFee taxIncluded="N" entryFeeType="youth" type="youth">
+    <EntryFeeId>76965</EntryFeeId>
+    <Name>Påmeldingskontingent ungdom</Name>
+    <Amount currency="NOK">50</Amount>
+    <ExternalFee currency="NOK">0</ExternalFee>
+    <ValidToDate>
+      <Date>2026-05-12</Date>
+      <Clock>16:30:59</Clock>
+    </ValidToDate>
+  </EntryFee>
+  <EntryFee taxIncluded="N" entryFeeType="adult" type="adult">
+    <EntryFeeId>76964</EntryFeeId>
+    <Name>Påmeldingskontingent voksen</Name>
+    <Amount currency="NOK">50</Amount>
+    <ExternalFee currency="NOK">0</ExternalFee>
+    <ValidToDate>
+      <Date>2026-05-12</Date>
+      <Clock>16:30:59</Clock>
+    </ValidToDate>
+  </EntryFee>
+  <EntryFee taxIncluded="N" entryFeeType="adult" type="adult">
+    <EntryFeeId>76966</EntryFeeId>
+    <Name>Påmeldingskontingent voksen, åpen klasse</Name>
+    <Amount currency="NOK">50</Amount>
+    <ExternalFee currency="NOK">0</ExternalFee>
+    <ValidToDate>
+      <Date>2026-05-12</Date>
+      <Clock>16:30:59</Clock>
+    </ValidToDate>
+    <ToDateOfBirth>
+      <Date>2009-12-31</Date>
+    </ToDateOfBirth>
+  </EntryFee>
+  <EntryFee taxIncluded="N" entryFeeType="youth" type="youth">
+    <EntryFeeId>76967</EntryFeeId>
+    <Name>Påmeldingskontingent ungdom, åpen klasse</Name>
+    <Amount currency="NOK">50</Amount>
+    <ExternalFee currency="NOK">0</ExternalFee>
+    <ValidToDate>
+      <Date>2026-05-12</Date>
+      <Clock>16:30:59</Clock>
+    </ValidToDate>
+    <FromDateOfBirth>
+      <Date>2010-01-01</Date>
+    </FromDateOfBirth>
+  </EntryFee>
+</EntryFeeList>
